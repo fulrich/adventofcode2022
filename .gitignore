@@ -1,2 +1,11 @@
+# Ignored Build Folders
+.bloop
+target
+
+# Ignored Editor Folders
+.metals
+.vscode
+
+# Ignored Files
 *.class
 *.log
