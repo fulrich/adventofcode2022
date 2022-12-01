@@ -2,12 +2,15 @@ package ca.ulrichs.aoc.cli
 
 import scopt.OParser
 import ca.ulrichs.aoc.Configuration
+import java.io.File
+import ca.ulrichs.aoc.input.{ResourceRequest, FileRequest}
 
 object ConfigurationParser:
   val builder = OParser.builder[Configuration]
 
   val configurationParser = {
     import builder._
+
     OParser.sequence(
       programName("aoc"),
       head("Advent of Code", "2022"),
@@ -19,6 +22,12 @@ object ConfigurationParser:
         .validate(day => if day >= 1 && day <= 2 then success else failure("There are only 2 possible parts."))
         .action((part, config) => config.copy(part = part))
         .text("Set the part of the day of the puzzle you want to run"),
+      opt[File]('f', "file")
+        .action((file, config) => config.copy(input = FileRequest(file)))
+        .text("The input file to use as the input source"),
+      opt[String]('r', "resource")
+        .action((resource, config) => config.copy(input = ResourceRequest(resource)))
+        .text("The resource name to use as the input source"),
     )
   }
 

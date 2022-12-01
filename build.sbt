@@ -14,5 +14,6 @@ lazy val root = project
       "com.github.scopt" %% "scopt" % scoptVersion,
       "org.scalactic" %% "scalactic" % scalacticVersion,
       "org.scalatest" %% "scalatest" % scalacticVersion % Test
-    )
+    ),
+    scalacOptions ++= Seq("-deprecation", "-feature")
   )
