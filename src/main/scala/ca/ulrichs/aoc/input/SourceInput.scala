@@ -6,7 +6,12 @@ import java.io.File
 import java.nio.file.{Files, Paths}
 import scala.jdk.CollectionConverters._
 
-case class SourceInput(raw: Seq[String])
+case class SourceInput(private val raw: Seq[String]) {
+  def asString = raw.mkString(System.lineSeparator)
+
+  def asStringList: Seq[String] = raw
+  def asIntList: Seq[Int] = raw.map(_.toInt)
+}
 
 object SourceInput:
   val empty: SourceInput = SourceInput()
@@ -20,8 +25,6 @@ object SourceInput:
     case NoInput => empty
   }
 
-  def fromResource(name: String): SourceInput =
-    SourceInput(Source.fromResource(name).getLines.toVector)
+  def fromResource(name: String): SourceInput = SourceInput(Source.fromResource(name).getLines.toVector)
 
-  def fromFile(file: File): SourceInput =
-    SourceInput(Files.lines(Paths.get(file.getPath)).iterator.asScala.toVector)
+  def fromFile(file: File): SourceInput = SourceInput(Source.fromFile(file).getLines.toVector)

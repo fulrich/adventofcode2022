@@ -14,23 +14,23 @@ class SourceInputTest extends AnyFunSuite with FileTesting:
   test("Can create a puzzle input from a list of strings") {
     val rawStrings = Vector("1", "2", "3")
 
-    SourceInput(rawStrings).raw shouldBe rawStrings
+    SourceInput(rawStrings).asStringList shouldBe rawStrings
   }
 
   test("Can create a puzzle input from a variable list of strings") {
-    SourceInput("1", "2", "3").raw shouldBe Vector("1", "2", "3")
+    SourceInput("1", "2", "3").asStringList shouldBe Vector("1", "2", "3")
   }
 
   test("Can create a puzzle input from a ResourceRequest") {
     val resourceReqeust = ResourceRequest("test_resource")
 
-    SourceInput(resourceReqeust).raw shouldBe test_resource_source
+    SourceInput(resourceReqeust).asStringList shouldBe test_resource_source
   }
 
   test("Can create a puzzle input from FileRequest") {
     withFile(test_resource_source) { file =>
       val fileRequest = FileRequest(file)
 
-      SourceInput(fileRequest).raw shouldBe test_resource_source
+      SourceInput(fileRequest).asStringList shouldBe test_resource_source
     }
   }

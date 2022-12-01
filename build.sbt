@@ -2,7 +2,7 @@ val scala3Version = "3.2.1"
 val scalacticVersion = "3.2.14"
 val scoptVersion = "4.1.0"
 
-lazy val root = project
+lazy val adventOfCode = project
   .in(file("."))
   .settings(
     name := "adventofcode2022",
