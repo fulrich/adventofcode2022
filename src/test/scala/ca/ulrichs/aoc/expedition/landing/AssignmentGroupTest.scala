@@ -14,8 +14,5 @@ class AssignmentGroupTest extends AnyFunSuite:
   }
 
   test("Can parse an assignment group from a string") {
-    AssignmentGroup.parse("2-4,6-8") shouldBe AssignmentGroup(
-      SectionAssignment(2, 4),
-      SectionAssignment(6, 8)
-    )
+    AssignmentGroup.parse("2-4,6-8") shouldBe AssignmentGroup(2 to 4, 6 to 8)
   }

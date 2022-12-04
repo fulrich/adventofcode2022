@@ -1,8 +1,8 @@
 package ca.ulrichs.aoc.expedition.packing
 
+import ca.ulrichs.aoc.core.input.SourceInput
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.funsuite.AnyFunSuite
-import ca.ulrichs.aoc.input.SourceInput
 
 class RucksacksTest extends AnyFunSuite:
   val source = SourceInput(

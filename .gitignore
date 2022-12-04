@@ -1,10 +1,12 @@
 # Ignored Build Folders
 .bloop
 target
+.bsp
 
 # Ignored Editor Folders
 .metals
 .vscode
+.idea
 
 # Ignored Files
 *.class

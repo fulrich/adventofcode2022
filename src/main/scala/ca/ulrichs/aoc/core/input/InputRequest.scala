@@ -1,4 +1,4 @@
-package ca.ulrichs.aoc.input
+package ca.ulrichs.aoc.core.input
 
 import java.io.File
 

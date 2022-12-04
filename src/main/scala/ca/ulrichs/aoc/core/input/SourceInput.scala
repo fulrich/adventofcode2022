@@ -1,16 +1,15 @@
-package ca.ulrichs.aoc.input
+package ca.ulrichs.aoc.core.input
 
 import scala.io.Source
 import scala.annotation.targetName
 import java.io.File
 import java.nio.file.{Files, Paths}
 import scala.jdk.CollectionConverters._
+import StringParsing.*
 
 case class SourceInput(private val raw: Seq[String]) {
-  def asString = raw.mkString(System.lineSeparator)
-
-  def asStringList: Seq[String] = raw
-  def asIntList: Seq[Int] = raw.map(_.toInt)
+  def asSeq[A](using parsing: InputParsing[A]): Seq[A] = raw.map(parsing.parse)
+  def as[A](using parsing: InputParsing[A]): A = raw.mkString(System.lineSeparator).as[A]
 }
 
 object SourceInput:

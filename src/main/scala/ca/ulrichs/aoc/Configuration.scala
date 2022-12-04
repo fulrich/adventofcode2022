@@ -1,7 +1,6 @@
 package ca.ulrichs.aoc
 
-import ca.ulrichs.aoc.input.{InputRequest, NoInput}
-import ca.ulrichs.aoc.input.SourceInput
+import ca.ulrichs.aoc.core.input.{InputRequest, NoInput, SourceInput}
 
 final case class Configuration(
   day: Int,
