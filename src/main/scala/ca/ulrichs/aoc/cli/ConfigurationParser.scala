@@ -2,8 +2,8 @@ package ca.ulrichs.aoc.cli
 
 import scopt.OParser
 import ca.ulrichs.aoc.Configuration
+import ca.ulrichs.aoc.core.input.{FileRequest, ResourceRequest}
 import java.io.File
-import ca.ulrichs.aoc.input.{ResourceRequest, FileRequest}
 
 object ConfigurationParser:
   val builder = OParser.builder[Configuration]

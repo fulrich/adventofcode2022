@@ -1,7 +1,10 @@
 package ca.ulrichs.aoc.expedition.landing
 
-case class AssignmentGroup(firstGroup: SectionAssignment, secondGroup: SectionAssignment):
-  lazy val containedByOtherGroup: Boolean = firstGroup.contains(secondGroup) || secondGroup.contains(firstGroup)
+import ca.ulrichs.aoc.core.algebra.RangeHelpers.*
+import ca.ulrichs.aoc.core.input.StringParsing.*
+
+case class AssignmentGroup(firstGroup: Range, secondGroup: Range):
+  lazy val containedByOtherGroup: Boolean = firstGroup.includes(secondGroup) || secondGroup.includes(firstGroup)
   lazy val overlapsOtherGroup: Boolean = firstGroup.overlaps(secondGroup) || secondGroup.overlaps(firstGroup)
 
 object AssignmentGroup:
@@ -11,6 +14,6 @@ object AssignmentGroup:
   }
 
   def parse(firstGroup: String, secondGroup: String): AssignmentGroup = AssignmentGroup(
-    SectionAssignment.parse(firstGroup),
-    SectionAssignment.parse(secondGroup)
+    firstGroup.as[Range],
+    secondGroup.as[Range]
   )

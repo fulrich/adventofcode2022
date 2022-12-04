@@ -1,8 +1,8 @@
 package ca.ulrichs.aoc.expedition.landing
 
+import ca.ulrichs.aoc.core.input.SourceInput
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.funsuite.AnyFunSuite
-import _root_.ca.ulrichs.aoc.input.SourceInput
 
 class CampTest extends AnyFunSuite:
   val input = SourceInput(

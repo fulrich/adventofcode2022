@@ -1,10 +1,10 @@
 package ca.ulrichs.aoc.expedition.rochambeau
 
-import ca.ulrichs.aoc.input.SourceInput
+import ca.ulrichs.aoc.core.input.SourceInput
 import ca.ulrichs.aoc.expedition.rochambeau.strategies.*
 
 case class Rochambeau(source: SourceInput, strategy: Strategy):
-  lazy val playAll: Seq[Game] = source.asStringList.map(strategy.playGame)
+  lazy val playAll: Seq[Game] = source.asSeq[String].map(strategy.playGame)
   lazy val scoreOfAll = playAll.map(_.score).sum
 
 object Rochambeau:

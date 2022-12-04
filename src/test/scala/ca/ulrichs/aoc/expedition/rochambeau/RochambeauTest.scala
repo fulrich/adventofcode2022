@@ -1,8 +1,8 @@
 package ca.ulrichs.aoc.expedition.rochambeau
 
+import ca.ulrichs.aoc.core.input.SourceInput
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.funsuite.AnyFunSuite
-import ca.ulrichs.aoc.input.SourceInput
 
 class RochambeauTest extends AnyFunSuite:
   val source = SourceInput(
