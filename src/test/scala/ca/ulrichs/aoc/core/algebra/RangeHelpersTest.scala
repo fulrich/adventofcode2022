@@ -20,3 +20,7 @@ class RangeHelpersTest extends AnyFunSuite:
     (6 to 6).overlaps(4 to 6) shouldBe true
     (2 to 6).overlaps(4 to 8) shouldBe true
   }
+
+  test("Can parse a range from a String") {
+    RangeHelpers.parse("2-10") shouldBe (2 to 10)
+  }
