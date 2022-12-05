@@ -7,4 +7,4 @@ case class Camp(assignments: Seq[AssignmentGroup]):
   lazy val countAnyWorkOverlap: Int = assignments.count(_.overlapsOtherGroup)
 
 object Camp:
-  def parse(input: SourceInput): Camp = Camp(input.asNestedSeq[Range].map(AssignmentGroup.parse))
+  def parse(input: SourceInput): Camp = Camp(input.asSeq[AssignmentGroup])

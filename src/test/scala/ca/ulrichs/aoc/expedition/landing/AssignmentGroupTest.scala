@@ -2,6 +2,7 @@ package ca.ulrichs.aoc.expedition.landing
 
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.funsuite.AnyFunSuite
+import ca.ulrichs.aoc.core.input.StringParsing.*
 
 class AssignmentGroupTest extends AnyFunSuite:
   test("Can determine if one group in an assignment group contains another section assignment") {
@@ -14,5 +15,5 @@ class AssignmentGroupTest extends AnyFunSuite:
   }
 
   test("Can parse an assignment group from a string") {
-    AssignmentGroup.parse(Seq(2 to 4, 6 to 8)) shouldBe AssignmentGroup(2 to 4, 6 to 8)
+    "2-4,6-8".as[AssignmentGroup] shouldBe AssignmentGroup(2 to 4, 6 to 8)
   }

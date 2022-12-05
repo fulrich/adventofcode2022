@@ -35,6 +35,6 @@ class RucksacksTest extends AnyFunSuite:
   test("Can find the elf badges in a small set of rucksacks") {
     val rucksacks = Rucksacks.pack(source)
 
-    rucksacks.elfBadges should contain theSameElementsAs Seq('r', 'Z') 
+    rucksacks.elfBadges should contain theSameElementsAs Seq('r', 'Z')
     rucksacks.elfBadgesPriority.sum shouldBe 70
   }
