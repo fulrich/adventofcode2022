@@ -1,5 +1,7 @@
 package ca.ulrichs.aoc.core.input
 
+import ca.ulrichs.aoc.core.algebra.{Coordinate, RangeHelpers}
+
 trait InputParsing[A]:
   def parse(input: String): A
 
@@ -14,7 +16,7 @@ object InputParsing:
     def parse(input: String): Long = input.toLong
 
   given InputParsing[Range] with
-    def parse(input: String): Range = input.split('-') match {
-      case Array(rawStart, rawEnd) => (rawStart.toInt to rawEnd.toInt)
-      case _ => throw Exception(s"Could not parse Range from: ${input}")
-    }
+    def parse(input: String): Range = RangeHelpers.parse(input)
+
+  given InputParsing[Coordinate] with
+    def parse(input: String): Coordinate = Coordinate.parse(input)

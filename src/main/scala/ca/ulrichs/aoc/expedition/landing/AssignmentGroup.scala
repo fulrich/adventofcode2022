@@ -8,12 +8,7 @@ case class AssignmentGroup(firstGroup: Range, secondGroup: Range):
   lazy val overlapsOtherGroup: Boolean = firstGroup.overlaps(secondGroup) || secondGroup.overlaps(firstGroup)
 
 object AssignmentGroup:
-  def parse(input: String): AssignmentGroup = input.split(',') match {
-    case Array(rawFirstGroup, rawSecondGroup) => parse(rawFirstGroup, rawSecondGroup)
+  def parse(input: Seq[Range]): AssignmentGroup = input match {
+    case Seq(rawFirstGroup, rawSecondGroup) => AssignmentGroup(rawFirstGroup, rawSecondGroup)
     case _ => throw Exception(s"Could not parse Section Assignment: ${input}")
   }
-
-  def parse(firstGroup: String, secondGroup: String): AssignmentGroup = AssignmentGroup(
-    firstGroup.as[Range],
-    secondGroup.as[Range]
-  )

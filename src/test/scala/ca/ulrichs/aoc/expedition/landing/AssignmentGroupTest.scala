@@ -5,14 +5,14 @@ import org.scalatest.funsuite.AnyFunSuite
 
 class AssignmentGroupTest extends AnyFunSuite:
   test("Can determine if one group in an assignment group contains another section assignment") {
-    AssignmentGroup.parse("2-4,6-8").containedByOtherGroup shouldBe false
-    AssignmentGroup.parse("2-3,4-5").containedByOtherGroup shouldBe false
-    AssignmentGroup.parse("5-7,7-9").containedByOtherGroup shouldBe false
-    AssignmentGroup.parse("2-8,3-7").containedByOtherGroup shouldBe true
-    AssignmentGroup.parse("6-6,4-6").containedByOtherGroup shouldBe true
-    AssignmentGroup.parse("2-6,4-8").containedByOtherGroup shouldBe false
+    AssignmentGroup(2 to 4, 6 to 8).containedByOtherGroup shouldBe false
+    AssignmentGroup(2 to 3, 4 to 5).containedByOtherGroup shouldBe false
+    AssignmentGroup(5 to 7, 7 to 9).containedByOtherGroup shouldBe false
+    AssignmentGroup(2 to 8, 3 to 7).containedByOtherGroup shouldBe true
+    AssignmentGroup(6 to 6, 4 to 6).containedByOtherGroup shouldBe true
+    AssignmentGroup(2 to 6, 4 to 8).containedByOtherGroup shouldBe false
   }
 
   test("Can parse an assignment group from a string") {
-    AssignmentGroup.parse("2-4,6-8") shouldBe AssignmentGroup(2 to 4, 6 to 8)
+    AssignmentGroup.parse(Seq(2 to 4, 6 to 8)) shouldBe AssignmentGroup(2 to 4, 6 to 8)
   }
