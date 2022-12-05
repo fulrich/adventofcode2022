@@ -3,20 +3,21 @@ package ca.ulrichs.aoc.expedition.packing
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.LoneElement
+import ca.ulrichs.aoc.core.input.StringParsing.*
 
 class RucksackTest extends AnyFunSuite with LoneElement:
   test("Can pack a Rucksack from an item list") {
-    val rucksack = Rucksack.pack("vJrwpWtwJgWrhcsFMMfFFhFp")
+    val rucksack = "vJrwpWtwJgWrhcsFMMfFFhFp".as[Rucksack]
 
-    rucksack.compartments.head.mkString shouldBe "vJrwpWtwJgWr"
-    rucksack.compartments.last.mkString shouldBe "hcsFMMfFFhFp"
+    rucksack.leftCompartment.mkString shouldBe "vJrwpWtwJgWr"
+    rucksack.rightCompartment.mkString shouldBe "hcsFMMfFFhFp"
   }
 
   test("Can find the common items between the compartments in a Rucksack") {
-    Rucksack.pack("vJrwpWtwJgWrhcsFMMfFFhFp").commonItems.loneElement shouldBe 'p'
-    Rucksack.pack("jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL").commonItems.loneElement shouldBe 'L'
-    Rucksack.pack("PmmdzqPrVvPwwTWBwg").commonItems.loneElement shouldBe 'P'
-    Rucksack.pack("wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn").commonItems.loneElement shouldBe 'v'
-    Rucksack.pack("ttgJtRGJQctTZtZT").commonItems.loneElement shouldBe 't'
-    Rucksack.pack("CrZsJsPPZsGzwwsLwLmpwMDw").commonItems.loneElement shouldBe 's'
+    "vJrwpWtwJgWrhcsFMMfFFhFp".as[Rucksack].commonItems.loneElement shouldBe 'p'
+    "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL".as[Rucksack].commonItems.loneElement shouldBe 'L'
+    "PmmdzqPrVvPwwTWBwg".as[Rucksack].commonItems.loneElement shouldBe 'P'
+    "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn".as[Rucksack].commonItems.loneElement shouldBe 'v'
+    "ttgJtRGJQctTZtZT".as[Rucksack].commonItems.loneElement shouldBe 't'
+    "CrZsJsPPZsGzwwsLwLmpwMDw".as[Rucksack].commonItems.loneElement shouldBe 's'
   }
