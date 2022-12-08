@@ -1,10 +1,12 @@
 package ca.ulrichs.aoc.core.algebra
 
 case class Coordinate(x: Int, y: Int):
-  def up(amount: Int): Coordinate = copy(y = y - amount)
-  def down(amount: Int): Coordinate = copy(y = y + amount)
-  def left(amount: Int): Coordinate = copy(x = x - amount)
-  def right(amount: Int): Coordinate = copy(x = x + amount)
+  def move(direction: CoordinateDirection): Coordinate = direction.move(this)
+
+  def up(amount: Int): Coordinate = move(Up(amount))
+  def down(amount: Int): Coordinate = move(Down(amount))
+  def left(amount: Int): Coordinate = move(Left(amount))
+  def right(amount: Int): Coordinate = move(Right(amount))
 
   lazy val up: Coordinate = up(1)
   lazy val down: Coordinate = down(1)
@@ -23,6 +25,7 @@ case class Coordinate(x: Int, y: Int):
 
 object Coordinate:
   val origin: Coordinate = Coordinate(0, 0)
+  val directions: CoordinateDirection.type = CoordinateDirection
 
   def parse(input: Seq[Int]): Coordinate = input match {
     case Seq(x, y) => Coordinate(x, y)
@@ -33,3 +36,6 @@ object Coordinate:
     case Array(x: String, y: String) => Coordinate(x.trim.toInt, y.trim.toInt)
     case _ => throw IllegalArgumentException(s"Cannot build a Coordinate from $input")
   }
+
+  given Conversion[(Int, Int), Coordinate] with
+    def apply(tuple: (Int, Int)): Coordinate = Coordinate(tuple._1, tuple._2)

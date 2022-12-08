@@ -20,6 +20,8 @@ case class Grid[+A](private val points: Map[Coordinate, A]):
   lazy val keys: Seq[Coordinate] = points.keys.toSeq
   lazy val values: Seq[A] = points.values.toSeq
 
+  def map[B](f: ((Coordinate, A)) => (Coordinate, B)): Grid[B] = copy(points = points.map(f))
+
   def splitOnRow(row: Int, dropSplitRow: Boolean = false): (Grid[A], Grid[A]) = {
     val (top, bottom) = partition { case(key, value) => key.y < (row + 1) }
     val topDropped = if dropSplitRow then top.dropRow(top.height - 1) else top
@@ -83,15 +85,15 @@ case class Grid[+A](private val points: Map[Coordinate, A]):
     } }
   )
 
-  def toString(stringify: A => String, default: String = " "): String = {
+  def toString(stringify: (Coordinate, A) => String, default: String = " "): String = {
     val maximumY = keys.map(_.y).max
 
     (0 to maximumY).map { y =>
-      keys.filter(_.y == y).sortBy(_.x).map(coord => at(coord).map(stringify).getOrElse(default)).mkString
+      keys.filter(_.y == y).sortBy(_.x).map(coord => at(coord).map(value => stringify(coord, value)).getOrElse(default)).mkString
     }.mkString(sys.props("line.separator"))
   }
 
-  def print(stringify: A => String, default: String = " "): Unit =
+  def print(stringify: (Coordinate, A) => String, default: String = " "): Unit =
     println(toString(stringify, default))
 
 object Grid:
