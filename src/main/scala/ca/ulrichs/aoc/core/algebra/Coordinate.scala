@@ -1,12 +1,13 @@
 package ca.ulrichs.aoc.core.algebra
 
 case class Coordinate(x: Int, y: Int):
-  def move(direction: CoordinateDirection): Coordinate = direction.move(this)
+  def move(direction: Direction): Coordinate = direction.move(this)
+  def slope(coordinate: Coordinate): Direction = Direction(deltaX = coordinate.x - x, deltaY = coordinate.y - y)
 
-  def up(amount: Int): Coordinate = move(Up(amount))
-  def down(amount: Int): Coordinate = move(Down(amount))
-  def left(amount: Int): Coordinate = move(Left(amount))
-  def right(amount: Int): Coordinate = move(Right(amount))
+  def up(amount: Int): Coordinate = move(Direction.up(amount))
+  def down(amount: Int): Coordinate = move(Direction.down(amount))
+  def left(amount: Int): Coordinate = move(Direction.left(amount))
+  def right(amount: Int): Coordinate = move(Direction.right(amount))
 
   lazy val up: Coordinate = up(1)
   lazy val down: Coordinate = down(1)
@@ -23,9 +24,10 @@ case class Coordinate(x: Int, y: Int):
 
   lazy val surrounding: Seq[Coordinate]  = adjacent ++ diagonal
 
+  override def toString: String = s"($x, $y)"
+
 object Coordinate:
   val origin: Coordinate = Coordinate(0, 0)
-  val directions: CoordinateDirection.type = CoordinateDirection
 
   def parse(input: Seq[Int]): Coordinate = input match {
     case Seq(x, y) => Coordinate(x, y)

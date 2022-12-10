@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.island.forest
 
-import ca.ulrichs.aoc.core.algebra.{Coordinate, CoordinateDirection, Grid}
+import ca.ulrichs.aoc.core.algebra.{Coordinate, Direction, Grid}
 import ca.ulrichs.aoc.core.input.SourceInput
 
 import scala.annotation.tailrec
@@ -37,12 +37,12 @@ class Forest(val trees: Grid[Int]) {
   }
 
 
-  def scenicScore(at: Coordinate): Int = Coordinate.directions.Adjacent.map(d => scenicScore(at, d)).product
+  def scenicScore(at: Coordinate): Int = Direction.Adjacent.map(d => scenicScore(at, d)).product
 
-  final def scenicScore(coordinate: Coordinate, direction: CoordinateDirection): Int =
+  final def scenicScore(coordinate: Coordinate, direction: Direction): Int =
     trees.at(coordinate).map(height => scenicScore(height, coordinate.move(direction), 0, direction)).getOrElse(0)
 
-  final def scenicScore(referenceHeight: Int, coordinate: Coordinate, score: Int, direction: CoordinateDirection): Int =
+  final def scenicScore(referenceHeight: Int, coordinate: Coordinate, score: Int, direction: Direction): Int =
     trees.at(coordinate) match {
       case Some(height) if height < referenceHeight => scenicScore(referenceHeight, coordinate.move(direction), score + 1, direction)
       case Some(_) => score + 1
