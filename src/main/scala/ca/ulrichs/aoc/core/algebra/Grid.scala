@@ -14,8 +14,11 @@ case class Grid[+A](private val points: Map[Coordinate, A]):
   def at(coordinate: Coordinate): Option[A] = points.get(coordinate)
 
   def contains(key: Coordinate): Boolean = points.contains(key)
+  def findIndex[B >: A](search: B): Option[Coordinate] = points.find((_, value) => value == search).map(_._1)
 
   def updated[B >: A](key: Coordinate, value: B): Grid[B] = copy(points = points.updated(key, value))
+
+  def filter(f: ((Coordinate, A)) => Boolean): Grid[A] = Grid(points.filter(f))
 
   lazy val keys: Seq[Coordinate] = points.keys.toSeq
   lazy val values: Seq[A] = points.values.toSeq
