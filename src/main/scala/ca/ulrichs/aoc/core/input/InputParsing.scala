@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.core.input
 
-import ca.ulrichs.aoc.core.algebra.{Coordinate, RangeHelpers}
+import ca.ulrichs.aoc.core.algebra.RangeHelpers
 
 trait InputParsing[A]:
   def parse(input: String): A
@@ -17,6 +17,3 @@ object InputParsing:
 
   given InputParsing[Range] with
     def parse(input: String): Range = RangeHelpers.parse(input)
-
-  given InputParsing[Coordinate] with
-    def parse(input: String): Coordinate = Coordinate.parse(input)

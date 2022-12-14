@@ -119,7 +119,7 @@ class GridTest extends AnyFunSuite with LoneElement:
   }
 
   test("Can create a grid given a list of coordinates") {
-    val grid = Grid.fromCoordinates(Seq("3, 3", "5, 5"), default = 0)(_.x)
+    val grid = Grid.fromCoordinates(Seq(Coordinate(3, 3), Coordinate(5, 5)), default = 0)(_.x)
 
     grid.height shouldBe 6
     grid.width shouldBe 6
