@@ -3,11 +3,15 @@ package ca.ulrichs.aoc.core.algebra.grid
 import ca.ulrichs.aoc.core.algebra.Coordinate
 
 case class GridDimensions(xStart: Int, xEnd: Int, yStart: Int, yEnd: Int):
-  private val length: Int = width * height
+  lazy val length: Int = width * height
   lazy val tabulate: Vector[Coordinate] = Vector.tabulate(length)(toCoordinate)
 
   lazy val height: Int = (yEnd - yStart) + 1
   lazy val width: Int = (xEnd - xStart) + 1
+
+  lazy val topCorner: Coordinate = Coordinate(xStart, yStart)
+  lazy val bottomCorner: Coordinate = Coordinate(xEnd, yEnd)
+  lazy val corners: Seq[Coordinate] = Vector(topCorner, bottomCorner)
 
   def isCoordinateValid(coordinate: Coordinate): Boolean =
     (coordinate.x >= xStart && coordinate.x <= xEnd) && (coordinate.y >= yStart && coordinate.y <= yEnd)
