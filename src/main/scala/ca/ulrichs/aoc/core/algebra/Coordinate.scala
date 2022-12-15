@@ -1,5 +1,7 @@
 package ca.ulrichs.aoc.core.algebra
 
+import ca.ulrichs.aoc.core.input.InputParsing
+
 case class Coordinate(x: Int, y: Int):
   def +(coordinate: Coordinate): Coordinate = Coordinate(x = coordinate.x + x, y = coordinate.y + y)
   def -(coordinate: Coordinate): Coordinate = Coordinate(x = coordinate.x - x, y = coordinate.y - y)
@@ -28,6 +30,14 @@ case class Coordinate(x: Int, y: Int):
 
   lazy val surrounding: Seq[Coordinate]  = adjacent ++ diagonal
 
+  def to(coordinate: Coordinate): Seq[Coordinate] = coordinate match{
+    case Coordinate(targetX, targetY) if targetX == x => buildRange(y, targetY).map(newY => copy(y = newY))
+    case Coordinate(targetX, targetY) if targetY == y => buildRange(x, targetX).map(newX => copy(x = newX))
+    case _ => throw IllegalArgumentException(s"Can only create as range of Coordinates on a straight axis: $this -> $coordinate.")
+  }
+
+  private def buildRange(start: Int, end: Int): Range = if start < end then start to end else (end to start).reverse
+
   override def toString: String = s"($x, $y)"
 
 object Coordinate:
@@ -42,6 +52,9 @@ object Coordinate:
     case Array(x: String, y: String) => Coordinate(x.trim.toInt, y.trim.toInt)
     case _ => throw IllegalArgumentException(s"Cannot build a Coordinate from $input")
   }
+
+  given InputParsing[Coordinate] with
+    def parse(input: String): Coordinate = Coordinate.parse(input)
 
   given Conversion[(Int, Int), Coordinate] with
     def apply(tuple: (Int, Int)): Coordinate = Coordinate(tuple._1, tuple._2)

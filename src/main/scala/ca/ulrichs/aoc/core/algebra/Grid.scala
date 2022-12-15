@@ -1,6 +1,8 @@
 package ca.ulrichs.aoc.core.algebra
 
-case class Grid[+A](private val points: Map[Coordinate, A]):
+import scala.collection.immutable.HashMap
+
+case class Grid[+A](private val points: HashMap[Coordinate, A]):
   lazy val maximumColumn = keys.map(_.x).max
   lazy val maximumRow = keys.map(_.y).max
 
@@ -46,7 +48,7 @@ case class Grid[+A](private val points: Map[Coordinate, A]):
     (Grid(left), Grid(right))
   }
 
-  def mapValues[B](f: A => B): Grid[B] = Grid(points.view.mapValues(f).toMap)
+  def mapValues[B](f: A => B): Grid[B] = Grid(HashMap.from(points.view.mapValues(f)))
   def mapKeys(f: Coordinate => Coordinate): Grid[A] = Grid(points.map { case(coordinate, value) => f(coordinate) -> value })
 
   def dropColumn(column: Int): Grid[A] = Grid(points.collect {
@@ -72,12 +74,13 @@ case class Grid[+A](private val points: Map[Coordinate, A]):
 
   def transformAt[B >: A](positions: Seq[Coordinate])(f: B => B): Grid[B] =
     if positions.isEmpty then this
-    else Grid(
-      positions.foldLeft(Map.from[Coordinate, B](points)) { case (accumulation, key) => accumulation.get(key) match {
+    else
+      val newPoints = positions.foldLeft(Map.from[Coordinate, B](points)) { case (accumulation, key) => accumulation.get(key) match {
         case Some(value) => accumulation.updated[B](key, f(value))
         case None => accumulation
       } }
-    )
+
+      Grid(HashMap.from(newPoints))
 
   def merge[B >: A](other: Grid[B]): Grid[B] = Grid(points ++ other.points)
   def merge[B >: A](grid: Grid[B])(f: (B, B) => B): Grid[B] = Grid(
@@ -100,7 +103,7 @@ case class Grid[+A](private val points: Map[Coordinate, A]):
     println(toString(stringify, default))
 
 object Grid:
-  def apply[A](input: Seq[(Coordinate, A)]): Grid[A] = Grid(input.toMap)
+  def apply[A](input: Seq[(Coordinate, A)]): Grid[A] = Grid(HashMap.from(input))
 
   def parse[A](input: Seq[String])(parser: (Coordinate, Char) => A): Grid[A] = Grid(
     input.zipWithIndex.flatMap { (row, y) =>
@@ -110,13 +113,12 @@ object Grid:
     }
   )
 
-  def fromCoordinates[A](input: Seq[String], default: A)(fill: Coordinate => A): Grid[A] = {
-    val coordinates = input.map(Coordinate.parse)
+  def fromCoordinates[A](coordinates: Seq[Coordinate], default: A)(fill: Coordinate => A): Grid[A] = {
     val width = coordinates.map(_.x).max + 1
     val height = coordinates.map(_.y).max + 1
 
     create(width = width, height = height) { coordinate =>
-      coordinates.find(_  == coordinate).map(fill).getOrElse(default)
+      coordinates.find(_ == coordinate).map(fill).getOrElse(default)
     }
   }
 
