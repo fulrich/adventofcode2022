@@ -1,6 +1,8 @@
 package ca.ulrichs.aoc.core.algebra.pathing
 
-import ca.ulrichs.aoc.core.algebra.{Coordinate, Grid}
+import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.grid.Grid
+
 
 import scala.collection.{mutable, *}
 import scala.util.control.Breaks.{break, breakable}

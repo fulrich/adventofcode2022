@@ -1,6 +1,10 @@
 package ca.ulrichs.aoc.core.algebra
 
 case class Coordinate(x: Int, y: Int):
+  def +(coordinate: Coordinate): Coordinate = Coordinate(x = coordinate.x + x, y = coordinate.y + y)
+  def -(coordinate: Coordinate): Coordinate = Coordinate(x = coordinate.x - x, y = coordinate.y - y)
+  def ++(coordinate: Coordinate): Seq[Coordinate] = Vector(this, coordinate)
+
   def move(direction: Direction): Coordinate = direction.move(this)
   def slope(coordinate: Coordinate): Direction = Direction(deltaX = coordinate.x - x, deltaY = coordinate.y - y)
 
@@ -41,3 +45,11 @@ object Coordinate:
 
   given Conversion[(Int, Int), Coordinate] with
     def apply(tuple: (Int, Int)): Coordinate = Coordinate(tuple._1, tuple._2)
+
+  extension(coordinate: Seq[Coordinate]) {
+    def maxX: Int = coordinate.maxBy(_.x).x
+    def maxY: Int = coordinate.maxBy(_.y).y
+
+    def minX: Int = coordinate.minBy(_.x).x
+    def minY: Int = coordinate.minBy(_.y).y
+  }

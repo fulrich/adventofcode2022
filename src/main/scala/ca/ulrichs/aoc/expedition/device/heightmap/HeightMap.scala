@@ -1,7 +1,8 @@
 package ca.ulrichs.aoc.expedition.device.heightmap
 
 import ca.ulrichs.aoc.core.algebra.pathing.PathFinding
-import ca.ulrichs.aoc.core.algebra.{Coordinate, Grid}
+import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.grid.Grid
 import ca.ulrichs.aoc.core.input.SourceInput
 
 case class HeightMap(start: Coordinate, destination: Coordinate, grid: Grid[Char]) {
@@ -17,10 +18,10 @@ case class HeightMap(start: Coordinate, destination: Coordinate, grid: Grid[Char
 
 object HeightMap:
   def apply(source: SourceInput): HeightMap = {
-    val grid: Grid[Char] = Grid.parse(source.asSeq[String])((_, char) => char)
+    val grid: Grid[Char] = Grid.simpleFromStrings(source.asSeq[String])
 
-    val start = grid.findIndex('S').get
-    val destination = grid.findIndex('E').get
+    val start = grid.find('S')
+    val destination = grid.find('E')
 
     HeightMap(
       start = start,
