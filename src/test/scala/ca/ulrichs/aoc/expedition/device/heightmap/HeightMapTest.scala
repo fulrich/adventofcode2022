@@ -28,7 +28,7 @@ class HeightMapTest extends AnyFunSuite:
   ignore("Can determine the best hiking trail") {
     val heightMap = HeightMap(SourceInput.fromResource("day12_height_map"))
 
-    val lowestPoints = heightMap.grid.filter(_._2 == 'a').keys
+    val lowestPoints = heightMap.grid.findAll('a')
     val scenicRouteLength = lowestPoints.map(heightMap.fastestRouteFrom).min
 
     scenicRouteLength shouldBe 512
