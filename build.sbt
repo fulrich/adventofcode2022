@@ -13,6 +13,7 @@ lazy val adventOfCode = project
     libraryDependencies ++= Seq(
       "com.github.scopt" %% "scopt" % scoptVersion,
       "org.scalactic" %% "scalactic" % scalacticVersion,
+      "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.4",
       "org.scalatest" %% "scalatest" % scalacticVersion % Test
     ),
     scalacOptions ++= Seq("-deprecation", "-feature")
