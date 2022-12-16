@@ -1,6 +1,7 @@
 package ca.ulrichs.aoc.core.algebra.grid
 
-import ca.ulrichs.aoc.core.algebra.{Coordinate, Grid}
+import ca.ulrichs.aoc.core.algebra.Grid
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 
 case class Grid[+A](dimensions: GridDimensions, values: IndexedSeq[A]):
   private lazy val indexed: IndexedSeq[(A, Int)] = values.zipWithIndex

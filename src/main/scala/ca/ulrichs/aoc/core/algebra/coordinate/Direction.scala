@@ -1,4 +1,4 @@
-package ca.ulrichs.aoc.core.algebra
+package ca.ulrichs.aoc.core.algebra.coordinate
 
 sealed case class Direction(coordinateDirection: Coordinate):
   def + (direction: Direction): Direction = Direction(move(direction.coordinateDirection))

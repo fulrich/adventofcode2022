@@ -2,7 +2,7 @@ package ca.ulrichs.aoc.expedition.landing
 
 import ca.ulrichs.aoc.core.algebra.RangeHelpers.*
 import ca.ulrichs.aoc.core.input.InputParsing
-import ca.ulrichs.aoc.core.input.StringParsing.*
+import ca.ulrichs.aoc.core.*
 
 case class AssignmentGroup(firstGroup: Range, secondGroup: Range):
   lazy val containedByOtherGroup: Boolean = firstGroup.includes(secondGroup) || secondGroup.includes(firstGroup)

@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.core.algebra.grid
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 
 private trait GridBuilder:
   def simpleFromStrings(input: Seq[String], default: Char = ' '): Grid[Char] =

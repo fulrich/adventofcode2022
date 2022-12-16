@@ -1,5 +1,7 @@
 package ca.ulrichs.aoc.core.algebra
 
+import ca.ulrichs.aoc.core.algebra.coordinate.{Coordinate, Direction}
+
 case class Slope(deltaX: Int, deltaY: Int):
   def direction: Direction = (deltaX, deltaY) match {
     case (x, y) => Direction.up(1)

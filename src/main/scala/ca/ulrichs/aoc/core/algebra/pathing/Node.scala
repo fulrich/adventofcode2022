@@ -1,7 +1,6 @@
 package ca.ulrichs.aoc.core.algebra.pathing
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
-
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 import scala.collection.mutable
 
 case class Node(coordinate: Coordinate, distance: Int):

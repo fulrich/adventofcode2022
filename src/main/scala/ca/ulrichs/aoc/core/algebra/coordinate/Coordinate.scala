@@ -1,6 +1,6 @@
-package ca.ulrichs.aoc.core.algebra
+package ca.ulrichs.aoc.core.algebra.coordinate
 
-case class Coordinate(x: Int, y: Int):
+case class Coordinate[A](x: Int, y: Int, value: Option[A]):
   def +(coordinate: Coordinate): Coordinate = Coordinate(x = coordinate.x + x, y = coordinate.y + y)
   def -(coordinate: Coordinate): Coordinate = Coordinate(x = coordinate.x - x, y = coordinate.y - y)
   def ++(coordinate: Coordinate): Seq[Coordinate] = Vector(this, coordinate)

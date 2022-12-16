@@ -1,6 +1,7 @@
 package ca.ulrichs.aoc.island.forest
 
-import ca.ulrichs.aoc.core.algebra.{Coordinate, Direction, Grid}
+import ca.ulrichs.aoc.core.algebra.coordinate.{Coordinate, Direction}
+import ca.ulrichs.aoc.core.algebra.Grid
 import ca.ulrichs.aoc.core.input.SourceInput
 
 import scala.annotation.tailrec

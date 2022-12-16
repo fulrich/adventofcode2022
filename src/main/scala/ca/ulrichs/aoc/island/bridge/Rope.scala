@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.island.bridge
 
-import ca.ulrichs.aoc.core.algebra.{Coordinate, Direction}
+import ca.ulrichs.aoc.core.algebra.coordinate.{Coordinate, Direction}
 import ca.ulrichs.aoc.core.input.InputParsing
 
 import java.lang

@@ -1,9 +1,8 @@
 package ca.ulrichs.aoc.island.tunnels
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.*
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers.*
-import ca.ulrichs.aoc.core.input.StringParsing.*
 
 class SensorTest extends AnyFunSuite:
   val position: Coordinate = Coordinate(8, 7)

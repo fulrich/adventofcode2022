@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.island.tunnels
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 import ca.ulrichs.aoc.core.input.{InputParsing, SourceInput}
 
 import scala.collection.parallel.CollectionConverters.*

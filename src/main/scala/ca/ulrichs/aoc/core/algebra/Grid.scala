@@ -1,5 +1,7 @@
 package ca.ulrichs.aoc.core.algebra
 
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
+
 case class Grid[+A](private val points: Map[Coordinate, A]):
   lazy val maximumColumn = keys.map(_.x).max
   lazy val maximumRow = keys.map(_.y).max

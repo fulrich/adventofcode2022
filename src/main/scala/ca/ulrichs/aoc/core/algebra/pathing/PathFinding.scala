@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.core.algebra.pathing
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 import ca.ulrichs.aoc.core.algebra.grid.Grid
 
 

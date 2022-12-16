@@ -1,7 +1,6 @@
 package ca.ulrichs.aoc.expedition.device.distress
 
-import ca.ulrichs.aoc.core.input.InputParsing
-import ca.ulrichs.aoc.core.input.StringParsing.*
+import ca.ulrichs.aoc.core.*
 import ca.ulrichs.aoc.expedition.device.distress.DistressSignal.DividerPackets
 
 case class DistressSignal(pairs: Seq[PacketPair]):

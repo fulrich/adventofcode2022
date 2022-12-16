@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.island.forest
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 import ca.ulrichs.aoc.core.input.SourceInput
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.funsuite.AnyFunSuite

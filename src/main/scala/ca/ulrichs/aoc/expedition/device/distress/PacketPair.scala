@@ -1,8 +1,7 @@
 package ca.ulrichs.aoc.expedition.device.distress
 
-import ca.ulrichs.aoc.core.input.{InputParsing, SourceInput}
+import ca.ulrichs.aoc.core.*
 import ca.ulrichs.aoc.expedition.CalculateCalories.ElfSeparator
-import ca.ulrichs.aoc.core.input.StringParsing.*
 
 case class PacketPair(left: Packet, right: Packet):
   lazy val isCorrectOrder: Boolean = left.compare(right) > 0

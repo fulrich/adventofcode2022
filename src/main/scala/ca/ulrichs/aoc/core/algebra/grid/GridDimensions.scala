@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.core.algebra.grid
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 
 case class GridDimensions(xStart: Int, xEnd: Int, yStart: Int, yEnd: Int):
   private val length: Int = width * height

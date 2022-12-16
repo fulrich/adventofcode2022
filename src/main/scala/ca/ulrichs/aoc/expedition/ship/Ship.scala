@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.expedition.ship
 
-import ca.ulrichs.aoc.core.input.StringParsing.*
+import ca.ulrichs.aoc.core.*
 
 case class Ship(containers: Map[Int, Seq[Char]], instructionRules: CraneInstructionSet = NineThousand) {
   lazy val topCrates: Seq[Char] = containers.keys.toSeq.sorted.foldLeft(Seq.empty) { (tops, key) =>

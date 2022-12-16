@@ -1,6 +1,6 @@
 package ca.ulrichs.aoc.core.algebra.grid
 
-import ca.ulrichs.aoc.core.algebra.Coordinate
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
 import org.scalatest.*
 import matchers.should.Matchers.*
 import org.scalatest.funsuite.AnyFunSuite

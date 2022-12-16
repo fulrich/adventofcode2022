@@ -1,7 +1,8 @@
 package ca.ulrichs.aoc.core.algebra
 
-import org.scalatest._
-import matchers.should.Matchers._
+import ca.ulrichs.aoc.core.algebra.coordinate.Coordinate
+import org.scalatest.*
+import matchers.should.Matchers.*
 import org.scalatest.funsuite.AnyFunSuite
 
 class GridTest extends AnyFunSuite with LoneElement:
